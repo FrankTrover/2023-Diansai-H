@@ -1,0 +1,23 @@
+\contentsline {section}{\numberline {1}任务要求与总体指标}{3}{section.1}%
+\contentsline {section}{\numberline {2}方案论证与选择}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}可选方案比较}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}本设计总体结构}{5}{subsection.2.2}%
+\contentsline {section}{\numberline {3}理论分析与计算}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}信号模型}{5}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}采样率与 FFT 分辨率}{5}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}频率栅格吸附}{6}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}DDS 频率控制字}{6}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}相位与移相说明}{6}{subsection.3.5}%
+\contentsline {section}{\numberline {4}电路设计}{7}{section.4}%
+\contentsline {subsection}{\numberline {4.1}加法器}{7}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}采集电路}{7}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}DDS 输出电路}{8}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}电源设计}{8}{subsection.4.4}%
+\contentsline {section}{\numberline {5}程序设计}{8}{section.5}%
+\contentsline {subsection}{\numberline {5.1}软件总体流程}{8}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}采样驱动}{9}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}频谱识别算法}{9}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}DDS 控制}{10}{subsection.5.4}%
+\contentsline {section}{\numberline {6}测试方案与结果记录}{10}{section.6}%
+\contentsline {section}{\numberline {7}改进方案}{11}{section.7}%
+\contentsline {section}{\numberline {8}结论}{11}{section.8}%

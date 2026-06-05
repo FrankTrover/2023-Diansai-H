@@ -1,0 +1,94 @@
+#ifndef __AD9834_H
+#define __AD9834_H
+
+#include "main.h"
+#include <stdbool.h>
+#include <stdint.h>
+
+/*
+ * AD9834 DDS 驱动（STM32F407 HAL）
+ *
+ * 引脚映射（CubeMX 实际配置）：
+ *   FSY: PE2 (AD9834_FSY)
+ *   FS:  PE3 (AD9834_FS)
+ *   SCK: PE4 (AD9834_SCK)
+ *   PS:  PE5 (AD9834_PS)
+ *   SDA: PE6 (AD9834_SDA)
+ *   RST: PC0 (AD9834_RST)
+ *
+ * AD9834 P4 接口引出 FSY/SCK/SDA/RST/FS/PS，FS/PS 各串 100R 电阻
+ * AD9834 主钟由板载晶振提供，无需 STM32 输出 MCLK
+ * AD9834 最高输出频率：37.5 MHz（75 MHz 主钟下）
+ */
+
+#define AD9834_SYSTEM_CLOCK     75000000UL
+#define AD9834_MAX_OUTPUT_FREQ  (AD9834_SYSTEM_CLOCK / 2UL)
+
+/* 波形控制字 */
+#define AD9834_WAVE_TRIANGLE    0x2002U
+#define AD9834_WAVE_SINE        0x2008U
+#define AD9834_WAVE_SQUARE      0x2028U
+
+typedef enum
+{
+    AD9834_WAVEFORM_SINE = 0,
+    AD9834_WAVEFORM_TRIANGLE,
+    AD9834_WAVEFORM_SQUARE
+} AD9834_Waveform_t;
+
+/* 兼容旧名称 */
+#define Sine_Wave       AD9834_WAVE_SINE
+#define Triangle_Wave   AD9834_WAVE_TRIANGLE
+#define Square_Wave     AD9834_WAVE_SQUARE
+
+/* 寄存器索引 */
+#define AD9834_FREQ0    0U
+#define AD9834_FREQ1    1U
+#define AD9834_PHASE0   0U
+#define AD9834_PHASE1   1U
+
+/* 引脚映射 — 直接引用 CubeMX Label（main.h） */
+#define AD9834_FSYNC_PORT   AD9834_FSY_GPIO_Port
+#define AD9834_FSYNC_PIN    AD9834_FSY_Pin
+
+#define AD9834_SCLK_PORT    AD9834_SCK_GPIO_Port
+#define AD9834_SCLK_PIN     AD9834_SCK_Pin
+
+#define AD9834_SDATA_PORT   AD9834_SDA_GPIO_Port
+#define AD9834_SDATA_PIN    AD9834_SDA_Pin
+
+#define AD9834_RESET_PORT   AD9834_RST_GPIO_Port
+#define AD9834_RESET_PIN    AD9834_RST_Pin
+
+#define AD9834_FS_PORT      AD9834_FS_GPIO_Port
+#define AD9834_FS_PIN       AD9834_FS_Pin
+
+#define AD9834_PS_PORT      AD9834_PS_GPIO_Port
+#define AD9834_PS_PIN       AD9834_PS_Pin
+
+/* 引脚控制宏 */
+#define AD9834_FSYNC_SET()  HAL_GPIO_WritePin(AD9834_FSYNC_PORT, AD9834_FSYNC_PIN, GPIO_PIN_SET)
+#define AD9834_FSYNC_CLR()  HAL_GPIO_WritePin(AD9834_FSYNC_PORT, AD9834_FSYNC_PIN, GPIO_PIN_RESET)
+
+#define AD9834_SCLK_SET()   HAL_GPIO_WritePin(AD9834_SCLK_PORT, AD9834_SCLK_PIN, GPIO_PIN_SET)
+#define AD9834_SCLK_CLR()   HAL_GPIO_WritePin(AD9834_SCLK_PORT, AD9834_SCLK_PIN, GPIO_PIN_RESET)
+
+#define AD9834_SDATA_SET()  HAL_GPIO_WritePin(AD9834_SDATA_PORT, AD9834_SDATA_PIN, GPIO_PIN_SET)
+#define AD9834_SDATA_CLR()  HAL_GPIO_WritePin(AD9834_SDATA_PORT, AD9834_SDATA_PIN, GPIO_PIN_RESET)
+
+#define AD9834_RESET_SET()  HAL_GPIO_WritePin(AD9834_RESET_PORT, AD9834_RESET_PIN, GPIO_PIN_SET)
+#define AD9834_RESET_CLR()  HAL_GPIO_WritePin(AD9834_RESET_PORT, AD9834_RESET_PIN, GPIO_PIN_RESET)
+
+#define AD9834_FS_HIGH()    HAL_GPIO_WritePin(AD9834_FS_PORT, AD9834_FS_PIN, GPIO_PIN_SET)
+#define AD9834_FS_LOW()     HAL_GPIO_WritePin(AD9834_FS_PORT, AD9834_FS_PIN, GPIO_PIN_RESET)
+
+#define AD9834_PS_HIGH()    HAL_GPIO_WritePin(AD9834_PS_PORT, AD9834_PS_PIN, GPIO_PIN_SET)
+#define AD9834_PS_LOW()     HAL_GPIO_WritePin(AD9834_PS_PORT, AD9834_PS_PIN, GPIO_PIN_RESET)
+
+void AD9834_Init(void);
+void AD9834_Write_16Bits(uint16_t data);
+void AD9834_Select_Wave(uint16_t wave_type);
+void AD9834_Set_Freq(uint8_t freq_reg, uint32_t freq_hz);
+bool AD9834_ConfigureOutput(AD9834_Waveform_t waveform, uint32_t freq_hz);
+
+#endif /* __AD9834_H */
