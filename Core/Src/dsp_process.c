@@ -268,7 +268,7 @@ static DSP_WaveformType_t dsp_classify_waveform(float fundamental,
      * H3 ~= 11.1%, H5 ~= 4%. The thresholds are intentionally broad to absorb
      * window leakage and small amplitude differences.
      */
-    if ((ratio3 >= 0.055f) && (ratio3 <= 0.28f))
+    if ((ratio3 >= 0.020f) && (ratio3 <= 0.28f))
     {
         return DSP_WAVE_TRIANGLE;
     }

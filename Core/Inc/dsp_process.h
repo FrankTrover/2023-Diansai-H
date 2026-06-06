@@ -9,7 +9,7 @@
 #define DSP_FFT_SIZE              2048U
 #define DSP_SPECTRUM_SIZE         (DSP_FFT_SIZE / 2U)
 #define DSP_MIN_ANALYSIS_FREQ_HZ  20000.0f
-#define DSP_MAX_ANALYSIS_FREQ_HZ  100000.0f
+#define DSP_MAX_ANALYSIS_FREQ_HZ  110000.0f
 
 typedef enum
 {
