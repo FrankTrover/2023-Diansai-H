@@ -4,8 +4,7 @@
 #include "main.h"
 
 /*
- * Fallback AD7616 pin map used before CubeMX labels are added.
- * Once main.h defines matching AD7616_* macros, those values override these defaults.
+ * 没配置的情况下默认使用以下引脚，用户可以在工程的宏定义中重新定义这些引脚
  */
 
 #ifndef AD7616_D0_Pin
